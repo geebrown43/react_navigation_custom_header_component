@@ -1,7 +1,9 @@
 import React from 'react'
 import { View, Text, Dimensions } from 'react-native'
+import { createSwitchNavigator } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
+import { createDrawerNavigator } from 'react-navigation-drawer'
 
 // Screen to be displayed
 class HomeScreen extends React.Component {
@@ -55,10 +57,17 @@ const RandomNavigator = createStackNavigator({
     },
 })
 
-// Imported this component in App.js
+
 const BottomTabNavigator = createBottomTabNavigator({
     Home: HomeNavigator,
     Random: RandomNavigator,
+}, {
+    initialRouteName: 'Home'
 })
 
-export default BottomTabNavigator
+// Imported this component in App.js
+const DrawerNavigator = createDrawerNavigator({
+    Main: BottomTabNavigator
+})
+
+export default DrawerNavigator
